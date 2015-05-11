@@ -14,10 +14,13 @@ namespace RavenMigrations
         {
             const char underscore = '_';
             var type = migration.GetType();
-            var idSafeTypeName = Regex.Replace(type.Name, "_{2,}", "_")
-                .Trim(underscore);
-            var name = idSafeTypeName
-                .Replace(underscore, seperator)
+            //var idSafeTypeName = Regex.Replace(type.Name, "_{2,}", "_")
+            //    .Trim(underscore);
+            //var name = idSafeTypeName
+            //    .Replace(underscore, seperator)
+            var name = type
+                .Name.Replace('_', seperator)
+                .TrimEnd(new[] { seperator })
                 .ToLowerInvariant();
             var version = type.GetMigrationAttribute().Version;
 

@@ -18,7 +18,7 @@ namespace RavenMigrations.Tests
         [Fact]
         public void Can_change_migration_document_seperator_to_dash()
         {
-            new First_Migration().GetMigrationIdFromName(seperator: '-')
+            new _First___Migration().GetMigrationIdFromName(seperator: '-')
                 .Should().Be("ravenmigrations-first-migration-1");
         }
 
@@ -31,7 +31,7 @@ namespace RavenMigrations.Tests
         [Fact]
         public void Can_get_migration_id_from_migration()
         {
-            var id = new First_Migration().GetMigrationIdFromName();
+            var id = new _First___Migration().GetMigrationIdFromName();
             id.Should().Be("ravenmigrations/first/migration/1");
         }
 
@@ -45,7 +45,7 @@ namespace RavenMigrations.Tests
         [Fact]
         public void Can_get_migration_attribute_from_migration_type()
         {
-            var attribute = typeof(First_Migration).GetMigrationAttribute();
+            var attribute = typeof(_First___Migration).GetMigrationAttribute();
             attribute.Should().NotBeNull();
             attribute.Version.Should().Be(1);
         }
@@ -68,7 +68,7 @@ namespace RavenMigrations.Tests
         [Fact]
         public void Default_migration_resolver_can_instantiate_a_migration()
         {
-            var migration = new DefaultMigrationResolver().Resolve(typeof(First_Migration));
+            var migration = new DefaultMigrationResolver().Resolve(typeof(_First___Migration));
             migration.Should().NotBeNull();
         }
 
@@ -189,7 +189,7 @@ namespace RavenMigrations.Tests
                     secondMigrationDocument.Should().BeNull();
 
                     var firstMigrationDocument =
-                        session.Load<MigrationDocument>(new First_Migration().GetMigrationIdFromName());
+                        session.Load<MigrationDocument>(new _First___Migration().GetMigrationIdFromName());
                     firstMigrationDocument.Should().NotBeNull();
                 }
             }
@@ -266,7 +266,7 @@ namespace RavenMigrations.Tests
     }
 
     [Migration(1)]
-    public class First_Migration : Migration
+    public class _First___Migration : Migration
     {
         public override void Up()
         {
